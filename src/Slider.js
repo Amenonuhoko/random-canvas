@@ -39,8 +39,8 @@ const Slider = ({ value, setValue }) => {
 
 			{collapse ? (
 				<div className="min-max">
-					<input className="min" value={min} onChange={handleChange} />
-					<input className="min" value={max} onChange={handleChange} />
+					<input className="min" value={min} onChange={handleMin} />
+					<input className="min" value={max} onChange={handleMax} />
 				</div>
 			) : null}
 		</div>
