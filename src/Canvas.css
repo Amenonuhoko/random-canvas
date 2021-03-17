@@ -1,0 +1,9 @@
+canvas {
+	width: 700px;
+	height: 700px;
+}
+#canvas-container {
+	width: 900px;
+	height: 900px;
+	background: linear-gradient(#155674, #1489be);
+}
