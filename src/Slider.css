@@ -1,0 +1,38 @@
+.slider-container {
+	border: 1px solid black;
+}
+.slide {
+	display: flex;
+}
+.slide p {
+	margin: 0;
+}
+
+.slider {
+	appearance: none;
+	height: 1rem;
+	outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
+.slider::-moz-range-thumb {
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
+.min-max {
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid black;
+}
+.min {
+	appearance: none;
+	outline: none;
+	max-width: 40px;
+}
+.max {
+}
