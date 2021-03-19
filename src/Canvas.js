@@ -120,8 +120,10 @@ const Canvas = ({ colors, canvas, quantity, size }) => {
 		return () => window.cancelAnimationFrame(animationFrameID);
 	}, [draw, update, colors]);
 
+	let style = { background: `linearGradient(217, ${colors[1]}, ${colors[2]})` };
+
 	return (
-		<div ref={containerRef} id="canvas-container">
+		<div ref={containerRef} id="canvas-container" style={style}>
 			<canvas
 				ref={canvasRef}
 				width={canvas.width - 2}

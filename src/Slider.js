@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import "./Slider.css";
 
-const Slider = ({ value, setValue }) => {
+const Slider = ({ value, setValue, name }) => {
 	const inputRef = useRef(null);
 	const handleChange = (e) => {
 		setValue(e.target.value);
@@ -24,6 +24,7 @@ const Slider = ({ value, setValue }) => {
 	return (
 		<div className="slider-container">
 			<div className="slide">
+				<button onClick={handleClick}>{name}</button>
 				<input
 					ref={inputRef}
 					type="range"
@@ -34,13 +35,12 @@ const Slider = ({ value, setValue }) => {
 					className="slider"
 					id="myRange"
 				></input>
-				<p onClick={handleClick}>here</p>
 			</div>
 
 			{collapse ? (
 				<div className="min-max">
 					<input className="min" value={min} onChange={handleMin} />
-					<input className="min" value={max} onChange={handleMax} />
+					<input className="max" value={max} onChange={handleMax} />
 				</div>
 			) : null}
 		</div>

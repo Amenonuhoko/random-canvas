@@ -11,21 +11,21 @@ function App() {
 	// OPTIONS
 	const [hidden, setHidden] = useState(false);
 	const [canvas, setCanvas] = useState({});
-	const [canvasX, setCanvasX] = useState(32);
-	const [canvasY, setCanvasY] = useState(32);
 	const [colors, setColors] = useState([]);
 	const [quantity, setQuantity] = useState(100);
 	const [sizeRange, setSizeRange] = useState(20);
 	// HANDLE
+	// AMOUNT
+	const handleHidden = () => {
+		if (hidden) {
+			optionsRef.current.style.display = "flex";
+		} else {
+			optionsRef.current.style.display = "none";
+		}
+
+		setHidden((prev) => !prev);
+	};
 	// CANVAS
-	const handleChangeX = (e) => {
-		const value = parseInt(e.target.value);
-		setCanvasX(value);
-	};
-	const handleChangeY = (e) => {
-		const value = parseInt(e.target.value);
-		setCanvasY(value);
-	};
 	function getBoundingClientRect(element) {
 		var rect = element.getBoundingClientRect();
 		return {
@@ -43,29 +43,9 @@ function App() {
 		const stuff = getBoundingClientRect(canvasRef.current);
 		setCanvas(stuff);
 	}, []);
-
 	// COLOR
-	const colorChange = (color, event, index) => {
-		console.log(index);
-		const stuff = [...colors];
-		stuff[index] = color.hex;
-		setColors(stuff);
-	};
-	const handleClick = () => {
-		setColors([...colors, colors]);
-	};
-	// AMOUNT
-	const handleChangeQuantity = (e) => {
-		setQuantity(e.target.value);
-	};
-	const handleHidden = () => {
-		if (hidden) {
-			optionsRef.current.style.display = "flex";
-		} else {
-			optionsRef.current.style.display = "none";
-		}
-
-		setHidden((prev) => !prev);
+	const colorChange = (color) => {
+		setColors(color);
 	};
 
 	// RETURN
@@ -75,8 +55,6 @@ function App() {
 				<Canvas
 					colors={colors}
 					canvas={canvas}
-					canvasX={canvasX}
-					canvasY={canvasY}
 					quantity={quantity}
 					size={sizeRange}
 				/>
@@ -84,43 +62,24 @@ function App() {
 
 			<div className="Options">
 				<div className="button">
-					<button onClick={handleHidden}>HERE</button>
+					<button onClick={handleHidden}>Options</button>
 				</div>
 				<div className="box" ref={optionsRef}>
-					<input
-						type="text"
-						name="canvasX"
-						onChange={handleChangeX}
-						value={canvasX}
-					/>
-					<input
-						type="text"
-						name="canvasY"
-						onChange={handleChangeY}
-						value={canvasY}
-					/>
 					<div className="color-squares">
-						<button name="add" onClick={handleClick}></button>
-						{colors.map((colorBox, i) => {
-							return (
-								<Color
-									key={i}
-									colors={colorBox}
-									colorChange={colorChange}
-									index={i}
-								/>
-							);
-						})}
+						<Color colorChange={colorChange} />
 					</div>
-
-					<input
-						type="text"
-						name="quantity"
-						onChange={handleChangeQuantity}
+					<Slider
+						className="Slider"
 						value={quantity}
+						setValue={setQuantity}
+						name="Quantity"
 					/>
-					<Slider className="Slider" value={quantity} setValue={setQuantity} />
-					<Slider className="min" value={sizeRange} setValue={setSizeRange} />
+					<Slider
+						className="min"
+						value={sizeRange}
+						setValue={setSizeRange}
+						name="Size"
+					/>
 				</div>
 			</div>
 		</div>
