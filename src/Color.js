@@ -6,10 +6,11 @@ import { BlockPicker } from "react-color";
 const Color = ({ colorChange }) => {
 	// DEFINE
 	const [currentColors, setCurrentColors] = useState([
-		"rgba(220, 0, 0, 0.7)",
-		"rgba(0, 200, 0, 0.7)",
-		"rgba(0, 0, 230, 0.7)",
+		"#f47373",
+		"#2ccce4",
+		"#37d67a",
 	]);
+
 	// HANDLE
 	const handleClick = () => {
 		setCurrentColors([...currentColors, currentColors]);
@@ -22,21 +23,18 @@ const Color = ({ colorChange }) => {
 			<div className="color-list" style={{ display: "flex" }}>
 				{currentColors.map((color, i) => {
 					return (
-						<>
-							<Picker
-								currentColors={currentColors}
-								setCurrentColors={setCurrentColors}
-								index={i}
-								colorChange={colorChange}
-							/>
-						</>
+						<Picker
+							key={color}
+							currentColors={currentColors}
+							setCurrentColors={setCurrentColors}
+							index={i}
+							colorChange={colorChange}
+						/>
 					);
 				})}
 			</div>
 
-			<button onClick={handleClick} style={{}}>
-				Add Color
-			</button>
+			<button onClick={handleClick}>Add Color</button>
 		</div>
 	);
 };
@@ -48,9 +46,18 @@ const Picker = ({ setCurrentColors, currentColors, index, colorChange }) => {
 		setCollapse((prev) => !prev);
 	};
 	const handleChange = (color, event) => {
-		let stuff = currentColors;
-		stuff[index] = color.hex;
-		setCurrentColors(stuff);
+		console.log(event);
+		// let stuff = currentColors;
+		// stuff[index] = color.hex;
+		// setCurrentColors(stuff);
+		setCurrentColors((prev) =>
+			prev.map((colors, i) => {
+				if (index === i) {
+					return color.hex;
+				}
+				return colors;
+			})
+		);
 	};
 	useEffect(() => {
 		colorChange(currentColors);

@@ -121,6 +121,7 @@ const Canvas = ({ colors, canvas, quantity, size }) => {
 	}, [draw, update, colors]);
 
 	let style = { background: `linearGradient(217, ${colors[1]}, ${colors[2]})` };
+	// console.log(colors);
 
 	return (
 		<div ref={containerRef} id="canvas-container" style={style}>

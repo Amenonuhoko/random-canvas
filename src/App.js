@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Canvas from "./Canvas";
 import Color from "./Color";
 import Slider from "./Slider";
+import Button from "./Button";
 
 function App() {
 	// DEFINE
@@ -13,7 +14,7 @@ function App() {
 	const [canvas, setCanvas] = useState({});
 	const [colors, setColors] = useState([]);
 	const [quantity, setQuantity] = useState(100);
-	const [sizeRange, setSizeRange] = useState(20);
+	const [sizeRange, setSizeRange] = useState(100);
 	// HANDLE
 	// AMOUNT
 	const handleHidden = () => {
@@ -47,7 +48,6 @@ function App() {
 	const colorChange = (color) => {
 		setColors(color);
 	};
-
 	// RETURN
 	return (
 		<div className="App">
@@ -62,7 +62,7 @@ function App() {
 
 			<div className="Options">
 				<div className="button">
-					<button onClick={handleHidden}>Options</button>
+					<Button onClick={handleHidden} content="Options" />
 				</div>
 				<div className="box" ref={optionsRef}>
 					<div className="color-squares">
